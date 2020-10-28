@@ -4,6 +4,8 @@
 >
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.offline')
     @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.options')
+    {{-- Sorry I use tailwindcss --}}
+    @include('laravel-livewire-tables::'.config('laravel-livewire-tables.theme').'.includes.filters')
 
     @if ($this->getOption('bootstrap.responsive'))
         <div class="table-responsive">

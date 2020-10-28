@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Rappasoft\LaravelLivewireTables\Traits\ColumnSearch;
 use Rappasoft\LaravelLivewireTables\Traits\Exports;
 use Rappasoft\LaravelLivewireTables\Traits\Loading;
 use Rappasoft\LaravelLivewireTables\Traits\Options;
@@ -21,7 +22,8 @@ use Rappasoft\LaravelLivewireTables\Traits\Yajra;
  */
 abstract class TableComponent extends Component
 {
-    use Exports,
+    use ColumnSearch,
+        Exports,
         Loading,
         Options,
         Pagination,
@@ -96,7 +98,7 @@ abstract class TableComponent extends Component
     {
         return view($this->view(), [
             'columns' => $this->columns(),
-            'models' => $this->paginationEnabled ? $this->models()->paginate($this->perPage) : $this->models()->get(),
+            'models' => $this->paginationEnabled ? modelsWithFilters()->paginate($this->perPage) : modelsWithFilters()->get(),
         ]);
     }
 
